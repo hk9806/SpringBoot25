@@ -26,7 +26,7 @@ public class SampleController {
 
     }
 
-    @GetMapping("/ex/ex1") //http://192.168.111.105/ex/ex1 -> void /resources/templates/ex/ex1.html
+    @GetMapping("/ex/ex1") //http://192.168.111.105/ex/ex1 ->  /resources/templates/ex/ex1.html
     public void ex1(Model model){
         //리스트 타입으로 데이터를 보냄
         List<String> list = Arrays.asList("kkw","lee","hong","park","yang");
@@ -83,5 +83,12 @@ public class SampleController {
         model.addAttribute("dto",sampleDTO);//74행에 만들어진 객체 값
 
         //리턴 타입이 void 이므로 /resources/template/ex/ex2.html
+    }
+
+    @GetMapping("/ex/ex3") //http://192.168.111.105:80/ex/ex3 -> /resource/template/ex/ex3.html
+    public void ex3(Model model){
+        log.info("SampleController.ex3 메소드 실행------");
+
+        model.addAttribute("arr",new String[]{"가나다","라마바","사아자"});
     }
 }

@@ -26,7 +26,10 @@ repositories {
 dependencies {
     /*maven respository에서 코드를 가져와 코끼리를 누르면 가져옴*/
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  /*데이터베이스 관련*/
+
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' /*프론트 관련*/
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0' /*프론트 레이아웃 관련*/
+
     implementation 'org.springframework.boot:spring-boot-starter-web'       /*String-web*/
     compileOnly 'org.projectlombok:lombok'                                  /*lombok*/
     annotationProcessor 'org.projectlombok:lombok'                          /*lombok*/
