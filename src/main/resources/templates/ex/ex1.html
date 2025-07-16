@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>리스트 사용 연습</title>
+</head>
+<body>
+<!--  <h4>[[${list}]]</h4>-->
+  <hr/> <!--경계선-->
+  <h4 th:text="${list}"></h4>
+    <hr/>
+    <div th:with="num1 = ${10} ,num2 = ${20}"> <!--임시 변수 선언-->
+        <h4 th:text="${num1+num2}"></h4> <!--표현식 안에서 계산 진행-->
+    </div>
+    <hr/>
+    <!--반복문 처리 방법 list -> str-->
+    <!-- 반복이 필요한 태그에 th:each를 (향상된 for)적용-->
+
+    <ul>
+        <li th:each="str:${list}" th:text="${str}"></li>
+    </ul>
+
+    <ul>
+        <th:block th:each="str:${list}">
+            <li>[[${str}]]</li>
+        </th:block>
+    </ul>
+
+    <ul>
+        <li th:each="str,status:${list}">
+            [[${status.index}]] -- [[${str}]]
+        </li>
+    </ul>
+
+
+    <hr>
+    <!--if문 홀짝용 태그 이용 표현-->
+    <ul>
+        <li th:each="str,status:${list}">
+            <span th:if="${status.odd}">[[${status.index}]] 홀수(odd) --- [[${str}]]</span>
+            <span th:unless="${status.odd}">[[${status.index}]] 짝수(even) --- [[${str}]]</span>
+        </li>
+    </ul>
+<!--삼항 연산자 코드 (조건)? 참:거짓-->
+    <ul>
+        <li th:each="str,status:${list}">
+            <span th:text="${status.odd} ? '홀수--'+${str} : '거짓' "></span>
+        </li>
+
+    </ul>
+
+<!--스위치 문 활용-->
+    <ul>
+        <li th:each="str,status:${list}">
+            <th:block th:switch="${status.index % 3 }"><!--인덱스를 3으로 나눴을때 나머지 값-->
+                <span th:case="0">인덱스를 3으로 나누었을때 나머지가 0입니다</span>
+                <span th:case="1">인덱스를 3으로 나누었을때 나머지가 1입니다</span>
+                <span th:case="2">인덱스를 3으로 나누었을때 나머지가 2입니다</span>
+            </th:block>
+        </li>
+    </ul>
+
+ <!--타입리프 링크 처리-->
+ <!--jsp는 링크 처리할 때 톰켓이 컨텍스트 루트를 프로젝트 명으로 생성하기 때문에 문제가 발생-->
+<!-- @로 링크를 작성하기만 하면 컨텍스트 루트를 알아옴-->
+    <a th:href="@{/hello}">컨트롤러에서 hello 경로를 찾음</a>
+    <br>
+<!--링크의 쿼리스트링 처리 방법-->
+ <a th:href="@{/hello(name='가나다',age=33)}">클릭 후 url을 확인 하세요</a>
+    <br>
+    <!--링크 한글처리 테스트 성공 http://192.168.111.105/hello?name=%EA%B0%80%EB%82%98%EB%8B%A4&age=33-->
+
+    <!--링크가 배열일 경우 자동으로 같은 이름의 파라미터 처리를 함-->
+<!--<a th:href="@{/hello(types=${ {'요리사','운동선수','선생님'} },age=33)}">url확인</a>-->
+
+
+</body>
+</html>
