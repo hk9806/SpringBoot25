@@ -22,6 +22,7 @@ spring.jpa.show-sql=true
 
 
 =======================build.gradle=======================
+
   /*maven respository에서 코드를 가져와 코끼리를 누르면 가져옴*/
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  /*데이터베이스 관련*/
